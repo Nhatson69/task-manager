@@ -1,0 +1,13 @@
+<h2>Liste de tâches</h2>
+
+<table>
+    <tr><td>Nom </td> <td>état </td></tr>
+  @for (task of tasks; track task; let i = $index)
+  {
+    <tr><td>{{task.nom}} </td> <td><button (click)="switchEtat(i)">{{task.etat_terminer}}</button></td> <td> <button (click)="deleteTask(i)">supprimer</button></td> </tr>
+    
+  }
+</table>
+
+<input [ngModel]="newTask()" (ngModelChange)="newTask.set($event)">
+<button (click)="addTask()">ajout</button>
