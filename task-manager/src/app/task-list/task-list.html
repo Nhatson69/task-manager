@@ -1,11 +1,19 @@
 <h2>Liste de tâches</h2>
 
 <table>
-    <tr><td>Nom </td> <td>état </td></tr>
+  <tr>
+    <td>Nom </td>
+    <td>état </td>
+  </tr>
   @for (task of tasks; track task; let i = $index)
   {
-    <tr><td>{{task.nom}} </td> <td><button (click)="switchEtat(i)">{{task.etat_terminer}}</button></td> <td> <button (click)="deleteTask(i)">supprimer</button></td> </tr>
-    
+  <tr>
+    <td>{{task.name}} </td>
+    <td><button (click)="switchEtat(i)">{{task.completed}}</button></td>
+    <td> <button (click)="deleteTask(i)">supprimer</button></td>
+    <td><a [routerLink]="['/task', i]">Détails</a></td>
+
+  </tr>
   }
 </table>
 

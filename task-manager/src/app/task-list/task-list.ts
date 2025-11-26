@@ -1,42 +1,37 @@
 import { Component } from '@angular/core';
 import { signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { TaskService } from '../task';
+import {Task } from '../task';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-task-list',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
+
 export class TaskList {
-  tasks = [{ nom: 'un', etat_terminer: true }, { nom: 'deux', etat_terminer: false }, { nom: 'trois', etat_terminer: true }];
+  bidule = new TaskService();
+  //tasks = [{ nom: 'un', etat_terminer: true }, { nom: 'deux', etat_terminer: false }, { nom: 'trois', etat_terminer: true }];
+  tasks = this.bidule.getTasks();
   newTask = signal('');
 
+  
+
   addTask() {
-    /**récupérer newTask */
-    let task = { nom: this.newTask(), etat_terminer: false };
-    /**inserer newTask dans le tableau tasks */
-    this.tasks.push(task);
+    let tache: Task = {name : this.newTask(), completed : false};
+    this.bidule.addTask(tache);
   }
 
   deleteTask(i: number) {
-    this.tasks.splice(i, 1);
+    this.bidule.deleteTask(i);
   }
 
   switchEtat(i : number) {
-    let obj = this.tasks[i];
-    if (obj.etat_terminer == true) 
-    {
-      obj.etat_terminer = false;
-    }
-    else  
-    {
-      obj.etat_terminer = true;
-
-    }
-    /**  récupère l'etat de l'objet et inverse l'etat
-    obj.etat_terminer= !obj.etat_terminer;
-    
-    */
+    this.bidule.switchEtat(i);
   }
 }
+
+
+
