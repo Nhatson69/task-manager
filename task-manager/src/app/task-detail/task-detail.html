@@ -1,1 +1,14 @@
 <p>task-detail works!</p>
+
+<table>
+    <tr>
+        <td>{{task.name}}</td>
+        <td><input [ngModel]="signalName()" (ngModelChange)="signalName.set($event)"></td>
+        <td><button (click)="modifName()">Changer nom</button></td>
+    </tr>
+    <tr>
+        <td>{{task.completed}}</td> 
+        <td><button (click)="modifCompleted()">Changer Etat</button></td>
+    </tr>
+
+</table>

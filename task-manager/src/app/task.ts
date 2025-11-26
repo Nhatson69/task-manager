@@ -6,14 +6,17 @@ import { Injectable } from '@angular/core';
 })
 export class TaskService {
   //tasks = [{ nom: 'un', etat_terminer: true }, { nom: 'deux', etat_terminer: false }, { nom: 'trois', etat_terminer: true }];
-  tasks : Task[] = [{ name: 'un', completed: true }, { name: 'deux', completed: false }, { name: 'trois', completed: true }];
+  tasks: Task[] = [{ name: 'un', completed: true }, { name: 'deux', completed: false }, { name: 'trois', completed: true }];
 
-  getTasks()
-  {
+  getTasks() {
     return this.tasks;
   };
 
-  addTask(task : Task) {
+  getOneTasks(id: number) {
+    return this.tasks[id];
+  };
+
+  addTask(task: Task) {
     /**inserer newTask dans le tableau tasks */
     this.tasks.push(task);
   }
@@ -22,20 +25,34 @@ export class TaskService {
     this.tasks.splice(i, 1);
   }
 
-  switchEtat(i : number) {
+  switchEtat(i: number) {
     let obj = this.tasks[i];
-    if (obj.completed  == true) 
-    {
+    if (obj.completed == true) {
       obj.completed = false;
     }
-    else  
-    {
+    else {
       obj.completed = true;
     }
+  }
+
+  // fonction pour modifier un name 
+  modifName(id : number, name : string) {
+    // recupère le nom et le remplacer par un autre
+    this.tasks[id].name = name;
+  }
+
+  modifCompleted(id : number, ) {
+    // recupère le nom et le remplacer par un autre
+    this.tasks[id].completed = !this.tasks[id].completed;
+  }
+
+
+  modifier() {
+
   }
 }
 
 export interface Task {
- name: string;
- completed: boolean;
+  name: string;
+  completed: boolean;
 }
