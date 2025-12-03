@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './statistics.css',
 })
 export class Statistics {
+  
 
+  
 }
+

@@ -12,8 +12,7 @@ export class TaskService {
   // fonction initial de angular 
   constructor() {
     let localstorage = localStorage.getItem('tasks');
-    if (localstorage != null)
-    {
+    if (localstorage != null) {
       this.tasks = JSON.parse(localstorage);
     }
   }
